@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>バスケ勉強帳 | BASKETBALL NOTES</title>
+<meta name="description" content="バスケットボールの歴史・ルール・技術・戦術をまとめる個人の勉強サイト">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A1810;
+    --leather:#7B3F1D;
+    --leather-dark:#4F2A12;
+    --red:#A6192E;
+    --red-dark:#7D131F;
+    --paper:#F5EBDA;
+    --paper-warm:#EDE0C6;
+    --line:#F7EFDF;
+    --wood:#C68B4B;
+    --wood-soft:#E4C79A;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Shippori Mincho', serif;
+    line-height:1.9;
+    overflow-x:hidden;
+  }
+
+  .jp-head{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:900;
+    letter-spacing:.04em;
+  }
+
+  .disp{
+    font-family:'Anton', sans-serif;
+    letter-spacing:.02em;
+  }
+
+  a{color:inherit;}
+
+  ::selection{background:var(--red); color:var(--line);}
+
+  :focus-visible{
+    outline:3px solid var(--red);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:var(--ink);
+    border-bottom:4px solid var(--red);
+  }
+  .nav-wrap{
+    max-width:1080px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    color:var(--line);
+    font-size:1.15rem;
+  }
+  .brand .ball-mark{width:26px; height:26px; flex-shrink:0;}
+  .brand small{
+    display:block;
+    font-family:'Anton', sans-serif;
+    font-size:.6rem;
+    letter-spacing:.3em;
+    color:var(--wood-soft);
+  }
+  nav ul{
+    display:flex; gap:8px; list-style:none;
+  }
+  nav a{
+    display:inline-block;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+    font-size:.85rem;
+    color:var(--wood-soft);
+    text-decoration:none;
+    padding:8px 14px;
+    border-radius:3px;
+    transition:background .2s, color .2s;
+  }
+  nav a:hover, nav a:focus-visible{
+    background:var(--red);
+    color:var(--line);
+  }
+  nav a.current{
+    background:var(--leather);
+    color:var(--line);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:
+      radial-gradient(circle at 50% 108%, rgba(166,25,46,.35), transparent 60%),
+      var(--ink);
+    color:var(--line);
+    padding:96px 24px 84px;
+    overflow:hidden;
+    text-align:center;
+  }
+  .hero svg.court-lines{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    opacity:.16;
+  }
+  .hero-inner{position:relative; z-index:2; max-width:760px; margin:0 auto;}
+  .eyebrow{
+    font-family:'Anton', sans-serif;
+    font-size:.75rem;
+    letter-spacing:.55em;
+    color:var(--wood-soft);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.3rem, 6vw, 4rem);
+    line-height:1.25;
+    margin-bottom:20px;
+  }
+  .hero h1 .accent{color:var(--red); }
+  .hero p.lead{
+    font-size:1.05rem;
+    color:var(--paper-warm);
+    max-width:520px;
+    margin:0 auto 36px;
+  }
+  .hero-cta{
+    display:inline-flex; gap:14px; flex-wrap:wrap; justify-content:center;
+  }
+  .btn{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+    font-size:.9rem;
+    padding:14px 30px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-block;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn-primary{
+    background:var(--red);
+    color:var(--line);
+    box-shadow:0 6px 0 var(--red-dark);
+  }
+  .btn-ghost{
+    border:2px solid var(--wood-soft);
+    color:var(--wood-soft);
+  }
+  .btn:hover, .btn:focus-visible{transform:translateY(-2px);}
+  .btn-primary:hover, .btn-primary:focus-visible{box-shadow:0 8px 0 var(--red-dark);}
+  .btn-ghost:hover, .btn-ghost:focus-visible{background:var(--wood-soft); color:var(--ink);}
+
+  /* seam divider */
+  .seam{
+    height:46px;
+    width:100%;
+    display:block;
+  }
+  .seam path{fill:none; stroke:var(--leather); stroke-width:3; opacity:.55;}
+  .seam.on-dark path{stroke:var(--wood-soft); opacity:.4;}
+
+  /* ---------- STATS STRIP ---------- */
+  .stats{
+    background:var(--leather);
+    color:var(--line);
+    padding:40px 24px;
+  }
+  .stats-grid{
+    max-width:1080px; margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+    text-align:center;
+  }
+  .stat .num{
+    font-family:'Anton', sans-serif;
+    font-size:clamp(1.8rem, 4vw, 2.6rem);
+    color:var(--wood-soft);
+    line-height:1;
+  }
+  .stat .label{
+    margin-top:8px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:.78rem;
+    letter-spacing:.08em;
+    color:var(--paper-warm);
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{
+    max-width:1080px;
+    margin:0 auto;
+    padding:88px 24px;
+  }
+  .head-row{
+    display:flex; align-items:baseline; gap:18px;
+    margin-bottom:16px;
+    flex-wrap:wrap;
+  }
+  .head-row .no{
+    font-family:'Anton', sans-serif;
+    font-size:1.05rem;
+    color:var(--red);
+  }
+  .head-row h2{
+    font-size:clamp(1.5rem, 3.2vw, 2rem);
+  }
+  .section-lead{
+    max-width:620px;
+    color:#4A362A;
+    margin-bottom:48px;
+  }
+
+  /* ---------- ABOUT INTRO ---------- */
+  .intro-grid{
+    display:grid;
+    grid-template-columns:1.1fr .9fr;
+    gap:56px;
+    align-items:center;
+  }
+  .intro-grid p{margin-bottom:16px; color:#3B2A1E;}
+  .intro-figure{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--leather-dark);
+  }
+  .intro-figure svg{width:100%; height:100%;}
+
+  /* ---------- TOPICS ---------- */
+  .topics-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:2px;
+    background:var(--leather);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .topic-card{
+    background:var(--paper-warm);
+    padding:34px 26px;
+    min-height:220px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:background .2s;
+  }
+  .topic-card:hover, .topic-card:focus-within{
+    background:var(--line);
+  }
+  .topic-card .t-icon{width:34px; height:34px; color:var(--red);}
+  .topic-card .t-index{
+    font-family:'Anton', sans-serif;
+    font-size:.75rem;
+    color:var(--wood);
+    letter-spacing:.1em;
+  }
+  .topic-card h3{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:1.1rem;
+  }
+  .topic-card p{
+    font-size:.88rem;
+    color:#5A4433;
+    flex-grow:1;
+  }
+
+  /* ---------- BLOG PREVIEW ---------- */
+  .blog-block{
+    background:var(--ink);
+    color:var(--line);
+  }
+  .blog-block .section-lead{color:var(--paper-warm);}
+  .blog-block .head-row h2{color:var(--line);}
+  .blog-list{
+    list-style:none;
+    border-top:1px solid rgba(247,239,223,.2);
+  }
+  .blog-list li{
+    display:flex; gap:24px;
+    padding:20px 0;
+    border-bottom:1px solid rgba(247,239,223,.2);
+    align-items:baseline;
+    flex-wrap:wrap;
+  }
+  .blog-list time{
+    font-family:'Anton', sans-serif;
+    font-size:.85rem;
+    color:var(--wood-soft);
+    min-width:110px;
+  }
+  .blog-list span{color:var(--paper-warm); font-size:.95rem;}
+  .more-link{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:28px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+    font-size:.9rem;
+    color:var(--red);
+    text-decoration:none;
+    border-bottom:2px solid var(--red);
+    padding-bottom:2px;
+  }
+  .more-link:hover, .more-link:focus-visible{color:var(--wood-soft); border-color:var(--wood-soft);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--leather-dark);
+    color:var(--paper-warm);
+    padding:56px 24px 32px;
+  }
+  .footer-wrap{
+    max-width:1080px; margin:0 auto;
+  }
+  .footer-top{
+    display:flex; justify-content:space-between; gap:32px; flex-wrap:wrap;
+    padding-bottom:32px;
+    border-bottom:1px solid rgba(247,239,223,.18);
+    margin-bottom:24px;
+  }
+  .footer-brand .jp-head{font-size:1.2rem; color:var(--line);}
+  .footer-brand p{font-size:.82rem; margin-top:8px; max-width:340px; color:var(--wood-soft);}
+  .footer-links{
+    display:flex; gap:40px; flex-wrap:wrap;
+  }
+  .footer-links div h4{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:.78rem;
+    letter-spacing:.1em;
+    color:var(--wood-soft);
+    margin-bottom:10px;
+  }
+  .footer-links ul{list-style:none;}
+  .footer-links li{margin-bottom:6px;}
+  .footer-links a{
+    font-size:.85rem;
+    text-decoration:none;
+    color:var(--paper-warm);
+  }
+  .footer-links a:hover, .footer-links a:focus-visible{color:var(--red);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+    font-size:.72rem;
+    color:var(--wood-soft);
+  }
+  .footer-bottom .notice{max-width:640px; line-height:1.7;}
+
+  @media (max-width:760px){
+    nav ul{display:none;}
+    .stats-grid{grid-template-columns:repeat(2,1fr); gap:28px 20px;}
+    .intro-grid{grid-template-columns:1fr;}
+    .topics-grid{grid-template-columns:1fr;}
+    .blog-list li{flex-direction:column; gap:4px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand" aria-label="バスケ勉強帳 ホーム">
+      <svg class="ball-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#A6192E" stroke-width="2.4"/>
+        <path d="M20 2V38" stroke="#A6192E" stroke-width="1.6"/>
+        <path d="M2 20H38" stroke="#A6192E" stroke-width="1.6"/>
+        <path d="M5.5 8.5C11 14 11 26 5.5 31.5" stroke="#A6192E" stroke-width="1.6"/>
+        <path d="M34.5 8.5C29 14 29 26 34.5 31.5" stroke="#A6192E" stroke-width="1.6"/>
+      </svg>
+      <span>バスケ勉強帳<small>BASKETBALL&nbsp;NOTES</small></span>
+    </a>
+    <nav aria-label="サイト内ナビゲーション">
+      <ul>
+        <li><a href="index.html" class="current">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero">
+    <svg class="court-lines" viewBox="0 0 1200 520" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <rect x="20" y="20" width="1160" height="480" fill="none" stroke="#F7EFDF" stroke-width="2"/>
+      <circle cx="600" cy="500" r="90" fill="none" stroke="#F7EFDF" stroke-width="2"/>
+      <path d="M370 500 A230 230 0 0 1 830 500" fill="none" stroke="#F7EFDF" stroke-width="2"/>
+      <rect x="480" y="380" width="240" height="120" fill="none" stroke="#F7EFDF" stroke-width="2"/>
+      <circle cx="600" cy="380" r="60" fill="none" stroke="#F7EFDF" stroke-width="2"/>
+      <line x1="20" y1="500" x2="1180" y2="500" stroke="#F7EFDF" stroke-width="2"/>
+    </svg>
+    <div class="hero-inner">
+      <p class="eyebrow disp">STUDY NOTES ON THE GAME</p>
+      <h1 class="jp-head">歴史もルールも技術も。<br><span class="accent">バスケットボール</span>をちゃんと知るノート</h1>
+      <p class="lead">試合を見るのがもっと面白くなるように、バスケの成り立ちからルール、プレーの理屈までを自分の言葉でまとめていく個人の勉強サイトです。</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#topics">勉強ノートを見る</a>
+        <a class="btn btn-ghost" href="blog.html">日々の記録へ</a>
+      </div>
+    </div>
+  </section>
+
+  <svg class="seam on-dark seam-top" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 6 C 200 46, 400 -14, 600 6 S 1000 46, 1200 6" />
+  </svg>
+
+  <!-- ---------- STATS ---------- -->
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num disp">1891</div>
+        <div class="label">誕生年</div>
+      </div>
+      <div class="stat">
+        <div class="num disp">5</div>
+        <div class="label">オンコート人数</div>
+      </div>
+      <div class="stat">
+        <div class="num disp">24</div>
+        <div class="label">ショットクロック（秒）</div>
+      </div>
+      <div class="stat">
+        <div class="num disp">94ft</div>
+        <div class="label">NBAコートの長さ</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ---------- INTRO ---------- -->
+  <section class="block" id="about-intro">
+    <div class="intro-grid">
+      <div>
+        <div class="head-row"><span class="no disp">00</span><h2 class="jp-head">このノートについて</h2></div>
+        <p>バスケットボールは、1891年にジェームズ・ネイスミスが考案した室内競技から始まりました。桃かごとサッカーボールという素朴な道具が、今のNBAやBリーグにまでつながっていると思うと、それだけで面白いです。</p>
+        <p>このサイトでは、そんな成り立ちの話から、実際の試合を見るときに知っておきたいルール、シュートやディフェンスの基本的な考え方までを、勉強しながら少しずつ書き足していきます。</p>
+        <p>専門的な解説というより、初心者が自分のペースで理解を積み上げていくための「ノート」というイメージです。</p>
+      </div>
+      <div class="intro-figure">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="400" height="400" fill="#4F2A12"/>
+          <circle cx="200" cy="200" r="150" fill="none" stroke="#E4C79A" stroke-width="2" opacity=".8"/>
+          <path d="M200 50V350" stroke="#E4C79A" stroke-width="2" opacity=".8"/>
+          <path d="M50 200H350" stroke="#E4C79A" stroke-width="2" opacity=".8"/>
+          <path d="M65 90C120 150 120 250 65 310" stroke="#E4C79A" stroke-width="2" opacity=".8" fill="none"/>
+          <path d="M335 90C280 150 280 250 335 310" stroke="#E4C79A" stroke-width="2" opacity=".8" fill="none"/>
+          <circle cx="200" cy="200" r="150" fill="none" stroke="#A6192E" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <svg class="seam" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 40 C 200 0, 400 60, 600 40 S 1000 0, 1200 40" />
+  </svg>
+
+  <!-- ---------- TOPICS ---------- -->
+  <section class="block" id="topics">
+    <div class="head-row"><span class="no disp">01</span><h2 class="jp-head">勉強のテーマ</h2></div>
+    <p class="section-lead">今、少しずつ理解を深めているテーマ一覧です。日記（Blog）で更新の記録をつけながら進めます。</p>
+
+    <div class="topics-grid">
+      <div class="topic-card" tabindex="0">
+        <svg class="t-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 3v18M3 12h18M6 6c3 3 3 9 0 12M18 6c-3 3-3 9 0 12" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="t-index disp">TOPIC 01</span>
+        <h3>歴史</h3>
+        <p>1891年の誕生から、NBAの発展、日本のBリーグ創設までの流れをたどる。</p>
+      </div>
+      <div class="topic-card" tabindex="0">
+        <svg class="t-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 3v18M16 3v18" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="t-index disp">TOPIC 02</span>
+        <h3>ルール</h3>
+        <p>反則の種類、タイムアウト、ショットクロックなど基本ルールの整理。</p>
+      </div>
+      <div class="topic-card" tabindex="0">
+        <svg class="t-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20 L14 4 L20 20" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 13h6" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="t-index disp">TOPIC 03</span>
+        <h3>技術</h3>
+        <p>シュートフォーム、ドリブル、ディフェンスの基本動作を分解して学ぶ。</p>
+      </div>
+      <div class="topic-card" tabindex="0">
+        <svg class="t-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="t-index disp">TOPIC 04</span>
+        <h3>戦術</h3>
+        <p>オフェンス・ディフェンスの基本フォーメーションと、その狙いを読み解く。</p>
+      </div>
+      <div class="topic-card" tabindex="0">
+        <svg class="t-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="t-index disp">TOPIC 05</span>
+        <h3>世界のバスケ</h3>
+        <p>NBA、Bリーグ、国際大会など、いろいろな舞台のバスケを比較する。</p>
+      </div>
+      <div class="topic-card" tabindex="0">
+        <svg class="t-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21c4-4 8-7.5 8-12a8 8 0 10-16 0c0 4.5 4 8 8 12z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="9" r="2.4" stroke="currentColor" stroke-width="1.2"/></svg>
+        <span class="t-index disp">TOPIC 06</span>
+        <h3>観戦メモ</h3>
+        <p>実際に試合を見て気づいたこと、印象に残ったプレーの記録。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- BLOG PREVIEW ---------- -->
+  <section class="block blog-block">
+    <div class="head-row"><span class="no disp">02</span><h2 class="jp-head">最近の記録</h2></div>
+    <p class="section-lead">日々の勉強の記録は Blog に。日付と気づいたことだけの、簡単な日記形式です。</p>
+    <ul class="blog-list">
+      <li><time class="disp">2026.07.20</time><span>ショットクロックのルールについて整理した。</span></li>
+      <li><time class="disp">2026.07.12</time><span>ネイスミスの13条ルールを読み直した。桃かごの話が面白い。</span></li>
+      <li><time class="disp">2026.07.03</time><span>ピック&ロールの基本の動きをメモした。</span></li>
+    </ul>
+    <a class="more-link" href="blog.html">日記をすべて見る &rarr;</a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="jp-head">バスケ勉強帳</div>
+        <p>バスケットボールの歴史・ルール・技術を学ぶ個人の勉強サイトです。Azalea Creative Room の一部として運営しています。</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>SITE</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>AZALEA CREATIVE ROOM</h4>
+          <ul>
+            <li><a href="https://azaleacreativeroom888.github.io/">メインサイト</a></li>
+            <li><a href="https://azaleacreativeroom888.github.io/links.html">他のサイト一覧</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="notice">本サイトのテキスト・画像・デザインについて、AIの学習データとしての使用を禁じます。/ This site's text, images, and design may not be used for AI training.</p>
+      <p>&copy; 2026 バスケ勉強帳 — Azalea Creative Room</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
