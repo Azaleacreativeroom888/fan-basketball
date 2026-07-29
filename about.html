@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | バスケ勉強帳</title>
+<meta name="description" content="バスケ勉強帳について。このノートを作った理由と、お問い合わせフォーム。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Shippori+Mincho:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#2A1810;
+    --leather:#7B3F1D;
+    --leather-dark:#4F2A12;
+    --red:#A6192E;
+    --red-dark:#7D131F;
+    --paper:#F5EBDA;
+    --paper-warm:#EDE0C6;
+    --line:#F7EFDF;
+    --wood:#C68B4B;
+    --wood-soft:#E4C79A;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Shippori Mincho', serif;
+    line-height:1.9;
+  }
+  .jp-head{font-family:'Zen Kaku Gothic New', sans-serif; font-weight:900; letter-spacing:.04em;}
+  .disp{font-family:'Anton', sans-serif; letter-spacing:.02em;}
+  a{color:inherit;}
+  ::selection{background:var(--red); color:var(--line);}
+  :focus-visible{outline:3px solid var(--red); outline-offset:3px;}
+
+  /* ---------- NAV ---------- */
+  header{position:sticky; top:0; z-index:100; background:var(--ink); border-bottom:4px solid var(--red);}
+  .nav-wrap{max-width:1080px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:16px 24px; position:relative;}
+  .brand{display:flex; align-items:center; gap:10px; color:var(--line); font-size:1.15rem; text-decoration:none;}
+  .brand .ball-mark{width:26px; height:26px; flex-shrink:0;}
+  .brand small{display:block; font-family:'Anton', sans-serif; font-size:.6rem; letter-spacing:.3em; color:var(--wood-soft);}
+  nav ul{display:flex; gap:8px; list-style:none;}
+  nav a{display:inline-block; font-family:'Zen Kaku Gothic New', sans-serif; font-weight:700; font-size:.85rem; color:var(--wood-soft); text-decoration:none; padding:8px 14px; border-radius:3px; transition:background .2s, color .2s;}
+  nav a:hover, nav a:focus-visible{background:var(--red); color:var(--line);}
+  nav a.current{background:var(--leather); color:var(--line);}
+
+  .menu-toggle{
+    display:none;
+    background:none; border:none;
+    color:var(--wood-soft);
+    font-size:1.5rem;
+    cursor:pointer;
+    line-height:1;
+  }
+
+  /* ---------- PAGE HERO ---------- */
+  .page-hero{
+    background:
+      radial-gradient(circle at 50% 108%, rgba(166,25,46,.3), transparent 60%),
+      var(--ink);
+    color:var(--line);
+    padding:72px 24px 56px;
+    text-align:center;
+  }
+  .eyebrow{font-family:'Anton', sans-serif; font-size:.75rem; letter-spacing:.5em; color:var(--wood-soft); margin-bottom:16px;}
+  .page-hero h1{font-size:clamp(2rem, 5vw, 2.9rem);}
+  .page-hero p{color:var(--paper-warm); max-width:480px; margin:16px auto 0; font-size:.95rem;}
+
+  .seam{height:46px; width:100%; display:block;}
+  .seam path{fill:none; stroke:var(--wood-soft); stroke-width:3; opacity:.4;}
+
+  /* ---------- SECTION SHELL ---------- */
+  main{max-width:760px; margin:0 auto; padding:0 24px 100px;}
+  section.block{padding:64px 0;}
+  section.block + section.block{border-top:1px solid var(--wood-soft);}
+  .head-row{display:flex; align-items:baseline; gap:14px; margin-bottom:22px;}
+  .head-row .no{font-family:'Anton', sans-serif; color:var(--red); font-size:.95rem;}
+  .head-row h2{font-family:'Zen Kaku Gothic New', sans-serif; font-size:1.35rem; color:var(--leather-dark);}
+
+  /* ---------- INTRO TEXT ---------- */
+  .intro-text p{margin-bottom:16px; color:#3B2A1E; font-size:.98rem;}
+
+  /* ---------- PROFILE TABLE ---------- */
+  .profile-table{width:100%; border-collapse:collapse; margin-top:8px;}
+  .profile-table tr{border-bottom:1px solid var(--wood-soft);}
+  .profile-table tr:first-child{border-top:1px solid var(--wood-soft);}
+  .profile-table th{
+    text-align:left;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+    font-size:.82rem;
+    color:var(--leather);
+    padding:14px 16px 14px 4px;
+    width:150px;
+    vertical-align:top;
+  }
+  .profile-table td{
+    padding:14px 4px;
+    font-size:.92rem;
+    color:#3B2A1E;
+    vertical-align:top;
+  }
+
+  /* ---------- POLICY LIST ---------- */
+  .policy-list{list-style:none;}
+  .policy-list li{
+    display:flex; gap:14px;
+    padding:16px 0;
+    border-bottom:1px solid var(--wood-soft);
+  }
+  .policy-list li:first-child{border-top:1px solid var(--wood-soft);}
+  .policy-list .p-no{
+    font-family:'Anton', sans-serif;
+    color:var(--wood);
+    font-size:.85rem;
+    flex-shrink:0;
+    width:28px;
+  }
+  .policy-list p{font-size:.92rem; color:#3B2A1E;}
+  .policy-list strong{
+    display:block;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:.95rem;
+    color:var(--leather-dark);
+    margin-bottom:4px;
+  }
+
+  /* ---------- CONTACT FORM ---------- */
+  .form-card{
+    background:var(--paper-warm);
+    border:1px solid var(--wood-soft);
+    border-radius:5px;
+    padding:32px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .form-card::before{
+    content:'';
+    position:absolute; left:0; top:0; bottom:0; width:4px;
+    background:var(--red);
+  }
+  .form-intro{font-size:.9rem; color:#5A4433; margin-bottom:24px;}
+  .form-group{margin-bottom:18px;}
+  .form-label{
+    display:block;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:.8rem;
+    color:var(--leather);
+    letter-spacing:.05em;
+    margin-bottom:7px;
+  }
+  .required{color:var(--red); font-style:normal;}
+  .form-input, .form-textarea{
+    width:100%;
+    background:var(--line);
+    border:1px solid var(--wood-soft);
+    border-radius:3px;
+    color:var(--ink);
+    font-family:'Shippori Mincho', serif;
+    font-size:.95rem;
+    padding:10px 14px;
+    outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .form-input::placeholder, .form-textarea::placeholder{color:#B8A788;}
+  .form-input:focus, .form-textarea:focus{
+    border-color:var(--red);
+    box-shadow:0 0 0 3px rgba(166,25,46,.12);
+  }
+  .form-textarea{resize:vertical; min-height:140px;}
+  .field-error{display:block; font-size:.75rem; color:var(--red); margin-top:5px;}
+  .form-submit{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--red);
+    border:none;
+    border-radius:3px;
+    color:var(--line);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700;
+    font-size:.9rem;
+    letter-spacing:.05em;
+    padding:12px 28px;
+    cursor:pointer;
+    box-shadow:0 5px 0 var(--red-dark);
+    transition:transform .15s ease;
+    margin-top:6px;
+  }
+  .form-submit:hover, .form-submit:focus-visible{transform:translateY(-2px);}
+  .form-submit:disabled{opacity:.5; cursor:not-allowed;}
+  .form-success{
+    background:var(--line);
+    border:1px solid var(--wood);
+    border-radius:3px;
+    padding:16px 20px;
+    text-align:center;
+    color:var(--leather-dark);
+    font-size:.9rem;
+    margin-bottom:20px;
+  }
+  .form-success-icon{display:block; font-size:1.3rem; margin-bottom:6px; color:var(--red);}
+  .form-error-global{
+    background:rgba(166,25,46,.1);
+    border:1px solid rgba(166,25,46,.35);
+    border-radius:3px;
+    padding:12px 16px;
+    color:var(--red-dark);
+    font-size:.85rem;
+    margin-bottom:16px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--leather-dark); color:var(--paper-warm); padding:56px 24px 32px;}
+  .footer-wrap{max-width:1080px; margin:0 auto;}
+  .footer-top{display:flex; justify-content:space-between; gap:32px; flex-wrap:wrap; padding-bottom:32px; border-bottom:1px solid rgba(247,239,223,.18); margin-bottom:24px;}
+  .footer-brand .jp-head{font-size:1.2rem; color:var(--line);}
+  .footer-brand p{font-size:.82rem; margin-top:8px; max-width:340px; color:var(--wood-soft);}
+  .footer-links{display:flex; gap:40px; flex-wrap:wrap;}
+  .footer-links div h4{font-family:'Zen Kaku Gothic New', sans-serif; font-size:.78rem; letter-spacing:.1em; color:var(--wood-soft); margin-bottom:10px;}
+  .footer-links ul{list-style:none;}
+  .footer-links li{margin-bottom:6px;}
+  .footer-links a{font-size:.85rem; text-decoration:none; color:var(--paper-warm);}
+  .footer-links a:hover, .footer-links a:focus-visible{color:var(--red);}
+  .footer-bottom{display:flex; flex-direction:column; gap:6px; font-size:.72rem; color:var(--wood-soft);}
+  .footer-bottom p{max-width:680px; line-height:1.8;}
+  .footer-bottom .copyright{margin-top:8px; color:var(--wood-soft);}
+
+  @media (max-width:760px){
+    .menu-toggle{display:block;}
+    nav ul{
+      display:none;
+      flex-direction:column;
+      position:absolute;
+      top:60px; right:24px;
+      width:200px;
+      background:var(--ink);
+      border:1px solid var(--red);
+      border-radius:0 0 6px 6px;
+      padding:10px;
+      gap:4px;
+    }
+    nav ul.active{display:flex;}
+    .profile-table th{width:110px; font-size:.76rem;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="brand" aria-label="バスケ勉強帳 ホーム">
+      <svg class="ball-mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" stroke="#A6192E" stroke-width="2.4"/>
+        <path d="M20 2V38" stroke="#A6192E" stroke-width="1.6"/>
+        <path d="M2 20H38" stroke="#A6192E" stroke-width="1.6"/>
+        <path d="M5.5 8.5C11 14 11 26 5.5 31.5" stroke="#A6192E" stroke-width="1.6"/>
+        <path d="M34.5 8.5C29 14 29 26 34.5 31.5" stroke="#A6192E" stroke-width="1.6"/>
+      </svg>
+      <span>バスケ勉強帳<small>BASKETBALL&nbsp;NOTES</small></span>
+    </a>
+    <button class="menu-toggle" onclick="document.getElementById('navList').classList.toggle('active')" aria-label="メニューを開く">☰</button>
+    <nav aria-label="サイト内ナビゲーション">
+      <ul id="navList">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="about.html" class="current">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="page-hero">
+  <p class="eyebrow disp">ABOUT THIS NOTE</p>
+  <h1 class="jp-head">About</h1>
+  <p>このノートを作った理由と、運営方針について。ご意見・ご指摘はフォームからどうぞ。</p>
+</div>
+
+<svg class="seam" viewBox="0 0 1200 46" preserveAspectRatio="none" aria-hidden="true">
+  <path d="M0 6 C 200 46, 400 -14, 600 6 S 1000 46, 1200 6" />
+</svg>
+
+<main>
+
+  <section class="block intro-text">
+    <div class="head-row"><span class="no disp">01</span><h2>このノートについて</h2></div>
+    <p>バスケ勉強帳は、バスケットボール初心者が試合をもっと楽しめるようになるために始めた個人の勉強ノートです。ルールや戦術を知らないまま観戦していて、「今のプレーは何をしているんだろう」と思うことが多かったのがきっかけでした。</p>
+    <p>専門家の解説ではなく、あくまで学びながら書いている記録なので、内容には理解が浅い部分や間違いも含まれているかもしれません。気づいた点があれば下のフォームから教えていただけると嬉しいです。</p>
+    <p>Azalea Creative Room という個人の創作サイト群の一部として運営しています。</p>
+  </section>
+
+  <section class="block">
+    <div class="head-row"><span class="no disp">02</span><h2>プロフィール</h2></div>
+    <table class="profile-table">
+      <tr><th>運営</th><td>Azalea Creative Room（個人運営）</td></tr>
+      <tr><th>始めた時期</th><td>2026年6月〜</td></tr>
+      <tr><th>勉強のきっかけ</th><td>試合をルール込みで理解して観戦を楽しみたかったため</td></tr>
+      <tr><th>更新頻度</th><td>不定期（Blogに記録）</td></tr>
+      <tr><th>関連サイト</th><td><a href="https://azaleacreativeroom888.github.io/">Azalea Creative Room メインサイト</a></td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="head-row"><span class="no disp">03</span><h2>運営方針</h2></div>
+    <ul class="policy-list">
+      <li>
+        <span class="p-no disp">01</span>
+        <p><strong>個人の勉強記録です</strong>正確さより、理解の過程をそのまま残すことを優先しています。</p>
+      </li>
+      <li>
+        <span class="p-no disp">02</span>
+        <p><strong>無断転載・AI学習利用は禁止</strong>本サイトのテキスト・図解・デザインの無断転載、AIの学習データとしての使用を禁じます。</p>
+      </li>
+      <li>
+        <span class="p-no disp">03</span>
+        <p><strong>訂正のお願い</strong>内容に誤りがあれば、フォームからお気軽にご指摘ください。</p>
+      </li>
+    </ul>
+  </section>
+
+  <section class="block">
+    <div class="head-row"><span class="no disp">04</span><h2>お問い合わせ</h2></div>
+
+    <div class="form-card">
+      <p class="form-intro">ご質問・ご感想・内容の訂正など、お気軽にどうぞ。</p>
+
+      <div data-fs-success class="form-success" style="display:none;">
+        <span class="form-success-icon">✓</span>
+        <p>メッセージを送信しました。ありがとうございます。</p>
+      </div>
+
+      <div data-fs-error class="form-error-global" style="display:none;"></div>
+
+      <form id="contact-form" action="https://formspree.io/f/maqvpvoz" method="POST">
+
+        <div class="form-group">
+          <label class="form-label" for="name">お名前</label>
+          <input class="form-input" type="text" id="name" name="name" placeholder="任意">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">メールアドレス <span class="required">*</span></label>
+          <input class="form-input" type="email" id="email" name="email" data-fs-field placeholder="example@email.com" required>
+          <span data-fs-error="email" class="field-error"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="message">メッセージ <span class="required">*</span></label>
+          <textarea class="form-textarea" id="message" name="message" data-fs-field placeholder="メッセージを入力してください…" rows="6" required></textarea>
+          <span data-fs-error="message" class="field-error"></span>
+        </div>
+
+        <button class="form-submit" type="submit" data-fs-submit-btn>送信する</button>
+
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="jp-head">バスケ勉強帳</div>
+        <p>バスケットボールの歴史・ルール・技術を学ぶ個人の勉強サイトです。Azalea Creative Room の一部として運営しています。</p>
+      </div>
+      <div class="footer-links">
+        <div>
+          <h4>SITE</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>AZALEA CREATIVE ROOM</h4>
+          <ul>
+            <li><a href="https://azaleacreativeroom888.github.io/">メインサイト</a></li>
+            <li><a href="https://azaleacreativeroom888.github.io/links.html">他のサイト一覧</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>当サイトに掲載されているテキスト・図解・デザインについて、AI学習への利用、無断転載・転載、二次利用を禁止します。</p>
+      <p>Please refrain from using any text, diagrams, or design on this site for AI training, unauthorized reproduction, or redistribution.</p>
+      <p class="copyright">&copy; 2026 バスケ勉強帳 — Azalea Creative Room</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+  formspree('initForm', { formElement: '#contact-form', formId: 'maqvpvoz' });
+</script>
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+</body>
+</html>
